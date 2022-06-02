@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,13 +15,18 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        $category= array(
-        array('category' => 'Alat Musik Petik'),
-        array('category' => 'Alat Musik Pukul'),
-        array('category' => 'Alat Musik Tiup')
-        );
+        $data = [
+            ['category' => 'Alat Musik Petik'],
+            ['category' => 'Alat Musik Pukul'],
+            ['category' => 'Alat Musik Tiup'],
+        ];
 
-        DB::table('categories')->insert($category);
+
+        foreach($data as $item){
+            Category::create([
+                'category' => $item['category']
+            ]);
+        }
 
     }
 }
