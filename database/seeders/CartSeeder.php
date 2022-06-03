@@ -2,15 +2,10 @@
 
 namespace Database\Seeders;
 
-<<<<<<< HEAD
-use Illuminate\Database\Seeder;
-
-=======
 use App\Models\Cart;
 use Illuminate\Database\Seeder;
 
 
->>>>>>> abc9ce9d680c71465f5a54c4efe760e1f5dc19c4
 class CartSeeder extends Seeder
 {
     /**
@@ -20,9 +15,6 @@ class CartSeeder extends Seeder
      */
     public function run()
     {
-<<<<<<< HEAD
-        //
-=======
         $data = [
             [
                 'user_id' => 2,
@@ -59,6 +51,5 @@ class CartSeeder extends Seeder
                 'subtotal' => $item['subtotal']
             ]);
         }
->>>>>>> abc9ce9d680c71465f5a54c4efe760e1f5dc19c4
     }
 }
