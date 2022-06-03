@@ -1,3 +1,10 @@
+a,
+a:link,
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
 .panda-bg-info {
     background-color: #fceae8;
 }
@@ -16,7 +23,4 @@
 }
 .categories img {
     width: 100px;
-}
-.col-lg-4 {
-    margin-top: 50px;
 }

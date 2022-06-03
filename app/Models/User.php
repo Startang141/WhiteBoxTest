@@ -41,4 +41,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function level(){
+        return $this->belongsTo(Level::class);
+    }
+    
+    public function cart(){
+        return $this->hasOne(cart::class);
+    }
+
+    public function order(){
+        return $this->hasMany(order::class);
+    }
+
+
 }
