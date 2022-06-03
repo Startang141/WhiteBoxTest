@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+<<<<<<< HEAD
     public static function index(){
         return Product::all();
     }
@@ -22,4 +23,8 @@ class Product extends Model
     public function order_detail(){
         return $this->belongsToMany(order_detail::class);
     }
+=======
+    use HasFactory;
+    protected $fillable = ['name', 'category_id', 'description', 'price', 'stock', 'rating', 'image'];
+>>>>>>> abc9ce9d680c71465f5a54c4efe760e1f5dc19c4
 }

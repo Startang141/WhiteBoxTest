@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Level;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,11 +15,18 @@ class LevelSeeder extends Seeder
      */
     public function run()
     {
-        $level= array(
-            array('level' => 'admin'),
-            array('level' => 'user')
-        );
+       
+        $data = [
+            ['level' => 'admin'],
+            ['level' => 'user'],
+          
+        ];
 
-        DB::table('levels')->insert($level);
+        foreach($data as $item){
+            Level::create([
+                'level' => $item['level']
+            ]);
+        }
+
     }
 }

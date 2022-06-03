@@ -17,7 +17,8 @@ class CreateCartsTable extends Migration
             $table->id();
 
              // relasi ke users
-             $table->foreignId('user_id')->constrained();
+             $table->unsignedBigInteger('user_id')->nullable();
+             $table->foreign('user_id')->references('id')->on('users');
         
              // relasi ke products
             $table->foreignId('product_id')->constrained();
