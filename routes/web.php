@@ -18,10 +18,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('admin.home.index');
+    return view('welcome');
 });
 
 Auth::routes();
+
+Route::group(['middleware' => 'level_id:1'], function(){
+
+Route::get('admin/home', [App\Http\Controllers\HomeController::class, 'admin'])->name('admin.home');
 
 Route::resource('admin/category', CategoryController::class);
 
@@ -29,6 +33,8 @@ Route::resource('admin/product', ProductController::class);
 
 Route::resource('admin/order', OrderController::class);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+});
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/detail/{id}', [App\Http\Controllers\DetailController::class, 'index'])->name('detail');

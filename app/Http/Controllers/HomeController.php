@@ -27,4 +27,8 @@ class HomeController extends Controller
         $Products = product::all();
         return view('index',compact('Products'));
     }
+    public function admin()
+    {
+        return view('admin.home.index');
+    }
 }
