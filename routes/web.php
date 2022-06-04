@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\ProductController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +18,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.home.index');
 });
 
 Auth::routes();
+
+Route::resource('admin/category', CategoryController::class);
+
+Route::resource('admin/product', ProductController::class);
+
+Route::resource('admin/order', OrderController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
