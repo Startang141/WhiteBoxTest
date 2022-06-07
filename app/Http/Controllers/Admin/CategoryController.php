@@ -37,7 +37,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'category' => 'required',
+        ]);
+
+        //fungsi eloquent untuk menambah data
+        Category::create($request->all());
     }
 
     /**

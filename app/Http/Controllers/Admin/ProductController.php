@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -30,7 +31,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.product.create');
+        $category = category::all();
+        return view('admin.product.create',['category'=>$category]);
     }
 
     /**
@@ -41,7 +43,35 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'Name'=>'required',
+            'Description'=>'required',
+            'Price'=>'required',
+            'Stock'=>'required',
+            'rating'=>'required',
+        ]);
+
+        if($request->file('Image')){
+            $image_name=$request->file('Image')->store('images','public');
+        }
+
+        $product = new Product;
+        $product->name = $request->get('Name');
+        $product->description = $request->get('Description');
+        $product->price = $request->get('Price');
+        $product->stock = $request->get('Stock');
+        $product->rating = $request->get('Rating');
+        $product->image = $image_name;
+        //fungsi eloquent untuk menambahkan data
+        $category = new Category;
+        $category->id = $request->get('category');
+
+        $product->category()->associate($category);
+        $product->save();
+        
+        //jika data berhasil ditambahkan, akan kembali ke halaman utama
+        return redirect()->route('admin.product.index')
+        ->with('success','Produk Berhasil Ditambahakan');
     }
 
     /**
@@ -65,7 +95,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         $item = Product::where('id', $id)->first();
-        return view('admin.product.index', compact('item'));
+        $category = category::all();
+        return view('admin.product.edit', compact('item','category'));
     }
 
     /**
@@ -77,7 +108,33 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'Name'=>'required',
+            'Description'=>'required',
+            'Price'=>'required',
+            'Stock'=>'required',
+            'Rating'=>'required',
+        ]);
+
+        $product = new Product;
+        $product->name = $request->get('Name');
+        $product->description = $request->get('Description');
+        $product->price = $request->get('Price');
+        $product->stock = $request->get('Stock');
+        $product->rating = $request->get('Rating');
+        if($product->image && file_exists(storage_path('app/public/'. $product->image))) {
+                Storage::delete('public/' . $delete->image);
+            }
+        //fungsi eloquent untuk menambahkan data
+        $category = new category;
+        $category->id = $request->get('category');
+
+        $product->category()->associate($category);
+        $product->save();
+        
+        //jika data berhasil ditambahkan, akan kembali ke halaman utama
+        return redirect()->route('admin.product.index')
+        ->with('success','Pelanggan Berhasil Ditambahakan');
     }
 
     /**
@@ -89,7 +146,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         Product::where('id', $id)->delete();
-        return redirect('/admin/product')
+        return redirect()->route('admin.product.index')
                     ->with('success', 'Berhasi menghapus');
     }
 }

@@ -35,7 +35,7 @@
 <div class="row justify-content-center align-items-center">
     <div class="card" style="width: 24rem;">
         <div class="card-header">
-        Create User
+        Edit Product
     </div>
     <div class="card-body">
         @if ($errors->any())
@@ -48,40 +48,44 @@
             </ul>
         </div>
         @endif
-        <form method="post" action="{{ route('users.store') }}" enctype="multipart/form" id="myForm">
+        <form method="post" action="{{ route('users.update', $item->id) }}" id="myForm">
             @csrf
             @method('PUT')
             <div class="form-group">
                 <label for="Name">Nama</label> 
-                <input type="text" name="Name" class="form-control" id="Name" aria-describedby="Name" > 
+                <input type="text" name="Name" class="form-control" id="Name" value="{{ $item->name }}" aria-describedby="Name" > 
             </div>
             <div class="form-group">
-                <label for="Category">Category</label> 
-                 <select name="Category" class="form-control">
-                  @foreach($category as $ctg)
-                  <option value="{{$ctg->id}}"> {{$ctg->category}} </option>
+                <label for="Email">Email</label> 
+                <input type="text" name="Email" class="form-control" id="Email" value="{{ $item->email }}" aria-describedby="Email" > 
+            </div>
+            <div class="form-group">
+                <label for="Address">Alamat</label> 
+                <input type="text" name="Address" class="form-control" id="Address" value="{{ $item->address }}" aria-describedby="Address" > 
+            </div>
+            <div class="form-group">
+                <label for="Phone_number">Nomor HP</label> 
+                <input type="text" name="Phone_number" class="form-control" id="Phone_number" value="{{ $item->phone_number }}" aria-describedby="Phone_number" > 
+            </div>
+            <div class="form-group">
+                <label for="Gender">Jenis Kelamin</label> 
+                <select type="enum" name="Gender" class="form-control" id="Gender" value="{{ $item->gender }}" aria-describedby="Gender">
+                  <option>L</option>
+                  <option>P</option>
+                </select> 
+            </div>
+            <div class="form-group">
+                <label for="level">Level</label> 
+                <select name="level" class="form-control">
+                  @foreach ($level as $lvl)
+                  <option value="{{$lvl->id}}" {{$item->level_id == $lvl->id ? 'selected' : ''}} > {{$lvl->level}} </option>
                   @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="Description">Deskripsi</label> 
-                <input type="text" name="Description" class="form-control" id="Description"  aria-describedby="Description" > 
-            </div>
-            <div class="form-group">
-                <label for="Price">Harga</label> 
-                <input type="text" name="Price" class="form-control" id="Price"  aria-describedby="Price" > 
-            </div>
-            <div class="form-group">
-                <label for="Stock">Stok</label> 
-                <input type="text" name="Stock" class="form-control" id="Stock"  aria-describedby="Stock" > 
-            </div>
-            <div class="form-group">
-                <label for="Rating">Rating</label> 
-                <input type="text" name="Rating" class="form-control" id="Rating"  aria-describedby="Rating" > 
+                </select> 
             </div>
             <div class="form-group">
                 <label for="Image">Image</label> 
-                <input type="file" name="Image" class="form-control" id="Image" aria-describedby="Image" > 
+                <input type="file" name="Image" class="form-control" id="Image" value="{{ $item->image }}" aria-describedby="Image" > 
+                <img style="width:100%" src="{{ asset('assets/'. $item->image)}}" alt="">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

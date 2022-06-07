@@ -10,10 +10,10 @@
     <meta name="description"
       content="Monster Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
     <meta name="robots" content="noindex,nofollow">
-    <title>Monster Lite Template by WrapPixel</title>
+    <title> Halaman Admin</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/monster-admin-lite/" />
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('admin/images/favicon.png') }}">
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('admin/images/favicon.png') }}"> -->
     <!-- Custom CSS -->
     <link href="{{ asset('admin/plugins/chartist/dist/chartist.min.css') }}" rel="stylesheet">
     <!-- Custom CSS -->

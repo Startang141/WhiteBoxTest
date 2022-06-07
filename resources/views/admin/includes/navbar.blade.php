@@ -9,13 +9,13 @@
         <b class="logo-icon">
           <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
           <!-- Dark Logo icon -->
-          <img src="{{ asset('admin/images/logo-icon.png') }}" alt="homepage" class="dark-logo" />
+          <!-- <img src="{{ asset('admin/images/logo-icon.png') }}" alt="homepage" class="dark-logo" /> -->
         </b>
         <!--End Logo icon -->
         <!-- Logo text -->
         <span class="logo-text">
           <!-- dark Logo text -->
-          <img src="{{ asset('admin/images/logo-text.png') }}" alt="homepage" class="dark-logo" />
+          <!-- <img src="{{ asset('admin/images/logo-text.png') }}" alt="homepage" class="dark-logo" /> -->
         </span>
       </a>
       <!-- ============================================================== -->

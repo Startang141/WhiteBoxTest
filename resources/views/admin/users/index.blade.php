@@ -19,7 +19,7 @@
     </div>
     <div class="col-md-6 col-4 align-self-center">
       <div class="text-end upgrade-btn">
-        <a href="/admin/category/create"
+        <a href="{{route ('users.create')}}"
           class="btn btn-success d-none d-md-inline-block text-white">Tambah Data</a>
       </div>
     </div>
@@ -47,7 +47,12 @@
               <thead>
                 <tr>
                   <th class="border-top-0">#</th>
-                  <th class="border-top-0">Nama Kategori</th>
+                  <th class="border-top-0">Nama User</th>
+                  <th class="border-top-0">Alamat</th>
+                  <th class="border-top-0">Nomer HP</th>
+                  <th class="border-top-0">Jenis Kelamin</th>
+                  <th class="border-top-0">Gambar</th>
+                  <th class="border-top-0">Level</th>
                   <th class="border-top-0">Action</th>
                 </tr>
               </thead>
@@ -55,16 +60,18 @@
                 @foreach ($data as $item)
                   <tr>
                     <td>{{ $item->id }}</td>
-                    <td>{{ $item->user_id ->name}}</td>
-                    <td>{{ $item->order_date }}</td>
-                    <td>{{ $item->total }}</td>
-                    <td>{{ $item->status }}</td>
+                    <td>{{ $item->email }}</td>
+                    <td>{{ $item->address }}</td>
+                    <td>{{ $item->phone_number }}</td>
+                    <td>{{ $item->gender }}</td>
+                    <td><img style="width: 50px; overflow:hidden" src="{{ asset('./assets/'. $item->image)}}" alt=""></td>
+                    <td>{{ $item->level->level }}</td>
                     <td>
-                      <form action="/admin/category/{{ $item->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">
+                      <form action="/admin/users/{{ $item->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">
                       @csrf
                       @method('DELETE')
 
-                      <a href="/admin/category/{{ $item->id }}/edit" class="btn btn-info btn-sm text-light">Edit</a>
+                      <a href="{{ route('users.edit',$item->id)}}" class="btn btn-info btn-sm text-light">Edit</a>
                       <button type="submit" class="btn btn-danger btn-sm text-light">Hapus</button>
                       </form>
                     </td>

@@ -145,7 +145,7 @@
                             <h4 class="card-title">{{$p -> name}}</h4>
                             <p class="card-text">{{$p -> description}}</p>
                             <h4>Rp {{$p -> price}}</h4>
-                            <button class="panda-button-bye-now">Buy Now>></button>
+                            <button class="panda-button-bye-now"> Buy Now>></button>
                         </div>
                     </div>
                 </div>

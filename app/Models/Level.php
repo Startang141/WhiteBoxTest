@@ -11,7 +11,7 @@ class Level extends Model
     protected $fillable = ['level'];
 
     public function user(){
-        return $this->hasMany(User::class);
+        return $this->hasMany(user::class);
     }
 
 }

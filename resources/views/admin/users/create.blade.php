@@ -56,28 +56,31 @@
                 <input type="text" name="Name" class="form-control" id="Name" aria-describedby="Name" > 
             </div>
             <div class="form-group">
-                <label for="Category">Category</label> 
-                 <select name="Category" class="form-control">
-                  @foreach($category as $ctg)
-                  <option value="{{$ctg->id}}"> {{$ctg->category}} </option>
-                  @endforeach
-                </select>
+                <label for="Email">Email</label> 
+                <input type="text" name="Email" class="form-control" id="Email" aria-describedby="Email" > 
             </div>
             <div class="form-group">
-                <label for="Description">Deskripsi</label> 
-                <input type="text" name="Description" class="form-control" id="Description"  aria-describedby="Description" > 
+                <label for="Address">Alamat</label> 
+                <input type="text" name="Address" class="form-control" id="Address" aria-describedby="Address" > 
             </div>
             <div class="form-group">
-                <label for="Price">Harga</label> 
-                <input type="text" name="Price" class="form-control" id="Price"  aria-describedby="Price" > 
+                <label for="Phone_number">Nomor HP</label> 
+                <input type="text" name="Phone_number" class="form-control" id="Phone_number" aria-describedby="Phone_number" > 
             </div>
             <div class="form-group">
-                <label for="Stock">Stok</label> 
-                <input type="text" name="Stock" class="form-control" id="Stock"  aria-describedby="Stock" > 
+                <label for="Gender">Jenis Kelamin</label> 
+                <select type="enum" name="Gender" class="form-control" id="Gender"  aria-describedby="Gender">
+                  <option>L</option>
+                  <option>P</option>
+                </select> 
             </div>
             <div class="form-group">
-                <label for="Rating">Rating</label> 
-                <input type="text" name="Rating" class="form-control" id="Rating"  aria-describedby="Rating" > 
+                <label for="Level">Level</label> 
+                <select type="Level" name="Level" class="form-control" id="Level"  aria-describedby="Level">
+                @foreach($level as $lvl)  
+                <option value="{{$lvl->id}}">{{$lvl->level}}</option>
+                @endforeach
+                </select> 
             </div>
             <div class="form-group">
                 <label for="Image">Image</label> 
