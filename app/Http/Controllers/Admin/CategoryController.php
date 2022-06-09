@@ -41,8 +41,11 @@ class CategoryController extends Controller
             'category' => 'required',
         ]);
 
-        //fungsi eloquent untuk menambah data
-        Category::create($request->all());
+        Category::create([
+            'category' => $request->category
+        ]);
+
+        return redirect('/admin/category')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
@@ -53,8 +56,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $item = Category::where('id', $id)->first();
-        return view('admin.categories.index', compact('item'));
+        $data = Category::where('id', $id)->first();
+        return view('admin.categories.show', compact('data'));
     }
 
     /**
@@ -65,8 +68,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $item = Category::where('id', $id)->first();
-        return view('admin.categories.index', compact('item'));
+        $data = Category::where('id', $id)->first();
+        return view('admin.categories.edit', compact('data'));
     }
 
     /**
@@ -78,7 +81,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'category' => 'required',
+        ]);
+
+        //fungsi eloquent untuk menambah data
+        Category::where('id', $id)->update([
+            'category' => $request->category
+        ]);
+
+        return redirect('/admin/category')->with('success', 'Data berhasil diubah!');
     }
 
     /**
@@ -91,6 +103,6 @@ class CategoryController extends Controller
     {
         Category::where('id', $id)->delete();
         return redirect('/admin/category')
-                    ->with('success', 'Berhasi menghapus');
+                    ->with('success', 'Data Berhasil dihapus!');
     }
 }

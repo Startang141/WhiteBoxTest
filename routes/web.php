@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\OrderController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,20 +26,18 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['middleware' => 'level_id:1'], function(){
-
-Route::get('admin/home', [App\Http\Controllers\HomeController::class, 'admin'])->name('admin.home');
-
-Route::resource('category', CategoryController::class);
-
-Route::resource('product', ProductController::class);
-
-Route::resource('order', OrderController::class);
-
-Route::resource('users', UserController::class);
-
-});
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/detail/{id}', [App\Http\Controllers\DetailController::class, 'index'])->name('detail');
+
+Route::middleware(['auth', 'isAdmin'])->group(function(){
+    Route::prefix('admin')->group(function(){
+        Route::controller(AdminHomeController::class)->group(function(){
+            Route::get('home', 'index');
+        });
+        Route::resource('category', AdminCategoryController::class);
+        Route::resource('product', AdminProductController::class);
+        Route::resource('order', AdminOrderController::class);
+        Route::resource('user', AdminUserController::class);
+    });
+});

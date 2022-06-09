@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\level;
-
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -110,14 +110,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd('OK');
         $request->validate([
             'Name'=>'required',
             'Email'=>'required',
             'Address'=>'required',
             'Phone_number'=>'required',
             'Gender'=>'required',
-            'Image'=>'required',
-            'Level_id',
+            'Image'=>'required'
         ]);
 
         $user = new User;
@@ -127,7 +127,7 @@ class UserController extends Controller
         $user->phone_number = $request->get('Phone_number');
         $user->gender = $request->get('Gender');
         if($user->image && file_exists(storage_path('app/public/'. $user->image))) {
-                Storage::delete('public/' . $delete->image);
+                Storage::delete('public/' . $user->image);
             }
         //fungsi eloquent untuk menambahkan data
         $level = new level;
@@ -137,7 +137,7 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('admin.users.index')
-        ->with('success','Pelanggan Berhasil Diupdate');
+                        ->with('success','Pelanggan Berhasil Diupdate');
     }
 
     /**

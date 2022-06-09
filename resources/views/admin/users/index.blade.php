@@ -1,9 +1,5 @@
 @extends('admin.layouts.main')
 @section('content')
-<div class="page-wrapper">
-<!-- ============================================================== -->
-<!-- Bread crumb and right sidebar toggle -->
-<!-- ============================================================== -->
 <div class="page-breadcrumb">
   <div class="row align-items-center">
     <div class="col-md-6 col-8 align-self-center">
@@ -19,22 +15,13 @@
     </div>
     <div class="col-md-6 col-4 align-self-center">
       <div class="text-end upgrade-btn">
-        <a href="{{route ('users.create')}}"
+        <a href="/admin/user/create"
           class="btn btn-success d-none d-md-inline-block text-white">Tambah Data</a>
       </div>
     </div>
   </div>
 </div>
-<!-- ============================================================== -->
-<!-- End Bread crumb and right sidebar toggle -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
-<!-- Container fluid  -->
-<!-- ============================================================== -->
 <div class="container-fluid">
-  <!-- ============================================================== -->
-  <!-- Start Page Content -->
-  <!-- ============================================================== -->
   <div class="row">
     <!-- column -->
     <div class="col-sm-12">
@@ -71,7 +58,7 @@
                       @csrf
                       @method('DELETE')
 
-                      <a href="{{ route('users.edit',$item->id)}}" class="btn btn-info btn-sm text-light">Edit</a>
+                      <a href="/admin/user/{{ $item->id }}/edit" class="btn btn-info btn-sm text-light">Edit</a>
                       <button type="submit" class="btn btn-danger btn-sm text-light">Hapus</button>
                       </form>
                     </td>

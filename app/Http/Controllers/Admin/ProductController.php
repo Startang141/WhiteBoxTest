@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -123,7 +124,7 @@ class ProductController extends Controller
         $product->stock = $request->get('Stock');
         $product->rating = $request->get('Rating');
         if($product->image && file_exists(storage_path('app/public/'. $product->image))) {
-                Storage::delete('public/' . $delete->image);
+                Storage::delete('public/' . $product->image);
             }
         //fungsi eloquent untuk menambahkan data
         $category = new category;

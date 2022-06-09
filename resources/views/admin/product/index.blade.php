@@ -1,9 +1,5 @@
 @extends('admin.layouts.main')
 @section('content')
-<div class="page-wrapper">
-<!-- ============================================================== -->
-<!-- Bread crumb and right sidebar toggle -->
-<!-- ============================================================== -->
 <div class="page-breadcrumb">
   <div class="row align-items-center">
     <div class="col-md-6 col-8 align-self-center">
@@ -63,7 +59,7 @@
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->category->category }}</td>
-                    <td>{{ $item->description }}</td>
+                    <td>{{ substr($item->description, 0, 50) }}...</td>
                     <td>{{ $item->price }}</td>
                     <td>{{ $item->stock }}</td>
                     <td>{{ $item->rating }}</td>

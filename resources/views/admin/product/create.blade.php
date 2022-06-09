@@ -1,10 +1,6 @@
 @extends('admin.layouts.main')
 
 @section('content')
-<div class="page-wrapper">
-<!-- ============================================================== -->
-<!-- Bread crumb and right sidebar toggle -->
-<!-- ============================================================== -->
 <div class="page-breadcrumb">
   <div class="row align-items-center">
     <div class="col-md-6 col-8 align-self-center">
@@ -20,16 +16,7 @@
     </div>
   </div>
 </div>
-<!-- ============================================================== -->
-<!-- End Bread crumb and right sidebar toggle -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
-<!-- Container fluid  -->
-<!-- ============================================================== -->
 <div class="container-fluid">
-  <!-- ============================================================== -->
-  <!-- Start Page Content -->
-  <!-- ============================================================== -->
 <div class="container mt-5">
     
 <div class="row justify-content-center align-items-center">

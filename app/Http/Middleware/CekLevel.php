@@ -17,8 +17,9 @@ class CekLevel
     public function handle(Request $request, Closure $next)
     {
         if(auth()->user()->level_id == 1){
-        return $next($request);
+            return $next($request);
         }
-        return redirect('home')->with('error','anda tidak dapat mengakses halaman ini');
+
+        return redirect('/')->with('error','anda tidak dapat mengakses halaman ini');
     }
 }

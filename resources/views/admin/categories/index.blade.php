@@ -1,9 +1,5 @@
 @extends('admin.layouts.main')
 @section('content')
-<div class="page-wrapper">
-<!-- ============================================================== -->
-<!-- Bread crumb and right sidebar toggle -->
-<!-- ============================================================== -->
 <div class="page-breadcrumb">
   <div class="row align-items-center">
     <div class="col-md-6 col-8 align-self-center">
@@ -25,16 +21,20 @@
     </div>
   </div>
 </div>
-<!-- ============================================================== -->
-<!-- End Bread crumb and right sidebar toggle -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
-<!-- Container fluid  -->
-<!-- ============================================================== -->
+
 <div class="container-fluid">
-  <!-- ============================================================== -->
-  <!-- Start Page Content -->
-  <!-- ============================================================== -->
+
+  @if(session('success'))
+    <div class="alert alert-success">
+      {{session('success')}}
+    </div>
+  @endif
+  @if(session('danger'))
+    <div class="alert alert-danger">
+      {{session('danger')}}
+    </div>
+  @endif
+
   <div class="row">
     <!-- column -->
     <div class="col-sm-12">
@@ -57,12 +57,12 @@
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->category }}</td>
                     <td>
-                      <form action="/admin/category/{{ $item->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">
-                      @csrf
-                      @method('DELETE')
+                      <form action="/admin/category/{{ $item->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="POSt">
+                        @csrf
+                        @method('DELETE')
 
-                      <a href="/admin/category/{{ $item->id }}/edit" class="btn btn-info btn-sm text-light">Edit</a>
-                      <button type="submit" class="btn btn-danger btn-sm text-light">Hapus</button>
+                        <a href="/admin/category/{{ $item->id }}/edit" class="btn btn-info btn-sm text-light">Edit</a>
+                        <button type="submit" class="btn btn-danger btn-sm text-light">Hapus</button>
                       </form>
                     </td>
                   </tr>
@@ -74,5 +74,4 @@
       </div>
     </div>
   </div>
-</div>
 @endsection
