@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\Admin\LevelController as AdminLevelController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -39,5 +40,6 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
         Route::resource('product', AdminProductController::class);
         Route::resource('order', AdminOrderController::class);
         Route::resource('user', AdminUserController::class);
+        Route::resource('level', AdminLevelController::class);
     });
 });
