@@ -35,26 +35,21 @@
       <!-- toggle and nav items -->
       <!-- ============================================================== -->
       <ul class="navbar-nav me-auto mt-md-0 ">
-        <!-- ============================================================== -->
-        <!-- Search -->
-        <!-- ============================================================== -->
-        <li class="nav-item hidden-sm-down">
-          <form class="app-search ps-3">
-            <input type="text" class="form-control" placeholder="Search for..."> <a
-              class="srh-btn"><i class="ti-search"></i></a>
-          </form>
-        </li>
+       
+    
       </ul>
-      <!-- ============================================================== -->
-      <!-- Right side toggle and nav items -->
-      <!-- ============================================================== -->
       <ul class="navbar-nav">
         <!-- ============================================================== -->
         <!-- User profile and search -->
         <!-- ============================================================== -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="{{ asset('admin/images/users/1.jpg') }}" alt="user" class="profile-pic me-2">{{ Auth::user()->name }}
+            @if (Auth::user()->image == null)
+              <img src="{{ asset('admin/images/users/5.jpg') }}" class="profile-pic me-2"  />
+            @else
+              <img src="{{ asset('storage/'.Auth::user()->image) }}" class="profile-pic me-2"  />
+            @endif
+            {{ Auth::user()->name }}
           </a>
           <ul class="dropdown-menu show" aria-labelledby="navbarDropdown"></ul>
         </li>
