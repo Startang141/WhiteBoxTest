@@ -35,6 +35,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
     Route::prefix('admin')->group(function(){
         Route::controller(AdminHomeController::class)->group(function(){
             Route::get('home', 'index');
+            Route::put('update_profile', 'update_profile');
+            Route::put('update_password', 'update_password');
         });
         Route::resource('category', AdminCategoryController::class);
         Route::resource('product', AdminProductController::class);

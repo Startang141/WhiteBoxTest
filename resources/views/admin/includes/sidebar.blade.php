@@ -37,13 +37,15 @@
           href="blank.html" aria-expanded="false"><i class="me-3 fa fa-columns"
           aria-hidden="true"></i><span class="hide-menu">Blank</span></a></li>
 
-        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+        {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
           href="404.html" aria-expanded="false"><i class="me-3 fa fa-info-circle"
-          aria-hidden="true"></i><span class="hide-menu">Error 404</span></a></li>
+          aria-hidden="true"></i><span class="hide-menu">Error 404</span></a></li> --}}
 
         <li class="text-center p-20 upgrade-btn">
-          <a href="#"
-            class="btn btn-danger text-white mt-4" target="_blank"> Log Out </a>
+          <form action="/logout" method="Post">
+            @csrf
+            <button class="btn btn-danger text-white mt-4" type="submit">Log Out</button>
+          </form> 
         </li>
       </ul>
     </nav>

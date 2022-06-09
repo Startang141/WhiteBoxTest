@@ -31,8 +31,12 @@
       <div class="card">
         <div class="card-body profile-card">
           <center class="mt-4">
-            <img src="../assets/images/users/5.jpg"
-              class="rounded-circle" width="150" />
+            @if (Auth::user()->image == null)
+              <img src="{{ asset('admin/images/users/5.jpg') }}" class="rounded-circle" width="150" />
+            @else
+              <img src="{{ asset('storage/'.Auth::user()->image) }}" class="rounded-circle" width="150" />
+            @endif
+
             <h4 class="card-title mt-2">Hanna Gover</h4>
             <h6 class="card-subtitle">Accoubts Manager Amix corp</h6>
             <div class="row justify-content-center">
@@ -58,58 +62,130 @@
     <div class="col-lg-8 col-xlg-9 col-md-7">
       <div class="card">
         <div class="card-body">
-          <form class="form-horizontal form-material mx-2">
+          <form class="form-horizontal form-material mx-2" method="POST" action="/admin/update_profile" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+
             <div class="form-group">
               <label class="col-md-12 mb-0">Full Name</label>
               <div class="col-md-12">
-                <input type="text" placeholder="Johnathan Doe"
-                  class="form-control ps-0 form-control-line">
+                <input type="text" name="name" value="{{ Auth::user()->name }}" placeholder="Johnathan Doe"
+                  class="form-control ps-0 form-control-line @error('name') is-invalid @enderror">
+                  @error('name')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
               </div>
             </div>
             <div class="form-group">
-              <label for="example-email" class="col-md-12">Email</label>
+              <label for="email" class="col-md-12">Email</label>
               <div class="col-md-12">
-                <input type="email" placeholder="johnathan@admin.com"
-                  class="form-control ps-0 form-control-line" name="example-email"
-                  id="example-email">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-md-12 mb-0">Password</label>
-              <div class="col-md-12">
-                <input type="password" value="password"
-                  class="form-control ps-0 form-control-line">
+                <input type="email" readonly value="{{ Auth::user()->email }}" read placeholder="johnathan@admin.com"
+                  class="form-control ps-0 form-control-line" name="email"
+                  id="email">
               </div>
             </div>
             <div class="form-group">
               <label class="col-md-12 mb-0">Phone No</label>
               <div class="col-md-12">
-                <input type="text" placeholder="123 456 7890"
-                  class="form-control ps-0 form-control-line">
+                <input type="number" name="phone_number" value="{{ Auth::user()->phone_number }}" 
+                  class="form-control ps-0 form-control-line @error('phone_number') is-invalid @enderror">
+                  @error('phone_number')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
               </div>
             </div>
+
             <div class="form-group">
-              <label class="col-md-12 mb-0">Message</label>
+              <label class="col-md-12 mb-0">Address</label>
               <div class="col-md-12">
-                <textarea rows="5" class="form-control ps-0 form-control-line"></textarea>
+                <input type="text" name="address" value="{{ Auth::user()->address }}" 
+                  class="form-control ps-0 form-control-line @error('address') is-invalid @enderror">
+                  @error('address')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="col-md-12 mb-0">Gender</label>
+              <div class="col-md-12">
+                <select name="gender" class="form-control ps-0 form-control-line @error('gender') is-invalid @enderror">
+                  <option value="L" {{ (Auth::user()->gender == 'L') ? 'selected' : '' }}>{{ 'Laki-laki' }}</option>
+                  <option value="P" {{ (Auth::user()->gender == 'P') ? 'selected' : '' }}>{{ 'Perempuan' }}</option>
+                </select>
+
+                @error('gender')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-12">Select Country</label>
-              <div class="col-sm-12 border-bottom">
-                <select class="form-select shadow-none border-0 ps-0 form-control-line">
-                  <option>London</option>
-                  <option>India</option>
-                  <option>Usa</option>
-                  <option>Canada</option>
-                  <option>Thailand</option>
-                </select>
+              <label class="col-md-12 mb-0">Image</label>
+              <div class="col-md-12">
+                <input type="file" name="image" placeholder="123 456 7890"
+                  class="form-control ps-0 form-control-line @error('image') is-invalid @enderror">
+                  @error('image')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
               </div>
             </div>
+
             <div class="form-group">
               <div class="col-sm-12 d-flex">
-                <button class="btn btn-success mx-auto mx-md-0 text-white">Update
-                Profile</button>
+                <button type="submit" class="btn btn-success mx-auto mx-md-0 text-white">Update
+                Profile </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <form class="form-horizontal form-material mx-2" method="POST" action="/admin/update_password" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+
+            <div class="form-group">
+              <label class="col-md-12 mb-0">Password Baru</label>
+              <div class="col-md-12">
+                <input type="password" name="password" placeholder="Password"
+                  class="form-control ps-0 form-control-line @error('password') is-invalid @enderror">
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-12 mb-0">Password Konfirmasi</label>
+              <div class="col-md-12">
+                <input type="password" name="password_confirmation" placeholder="Password confirmation"
+                  class="form-control ps-0 form-control-line @error('password_confirmation') is-invalid @enderror">
+                @error('password_confirmation')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-12 d-flex">
+                <button type="submit" class="btn btn-primary mx-auto mx-md-0 text-white">Update
+                Password </button>
               </div>
             </div>
           </form>
