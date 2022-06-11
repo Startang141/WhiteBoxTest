@@ -105,7 +105,7 @@
                             <h4 class="card-title">{{$p -> name}}</h4>
                             <p class="card-text">{{$p -> description}}</p>
                             <h4>Rp {{$p -> price}}</h4>
-                            <a href="{{ url('detail')}}/{{ $p -> id }}"><button class="panda-button-bye-now">Buy Now>></button></a>
+                            <a href="/detail/{{$p->id}}"><button class="panda-button-bye-now">Buy Now>></button></a>
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,7 @@
                             <h4 class="card-title">{{$p -> name}}</h4>
                             <p class="card-text">{{$p -> description}}</p>
                             <h4>Rp {{$p -> price}}</h4>
-                            <button class="panda-button-bye-now">Buy Now>></button>
+                            <a href="/detail/{{$p->id}}"><button class="panda-button-bye-now">Buy Now>></button></a>
                         </div>
                     </div>
                 </div>
@@ -145,7 +145,7 @@
                             <h4 class="card-title">{{$p -> name}}</h4>
                             <p class="card-text">{{$p -> description}}</p>
                             <h4>Rp {{$p -> price}}</h4>
-                            <button class="panda-button-bye-now"> Buy Now>></button>
+                            <a href="/detail/{{$p->id}}"><button class="panda-button-bye-now">Buy Now>></button></a>
                         </div>
                     </div>
                 </div>

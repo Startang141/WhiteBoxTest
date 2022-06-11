@@ -10,6 +10,7 @@ class DetailController extends Controller
 {
     public function __construct()
     {
+        $this->Product = new Product();
         $this->middleware('auth');
     }
 
