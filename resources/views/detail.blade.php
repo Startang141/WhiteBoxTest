@@ -34,23 +34,17 @@
                                         <td>:</td>
                                         <td>{{$Products -> description}}</td>
                                     </tr>
-                                    <form action="" method="post">
-                                        <tr>
-                                            <td>Jumlah Pesan</td>
-                                            <td>:</td>
-                                            <td>
+                                    <tr>
+                                        <td>Jumlah Pesan</td>
+                                        <td>:</td>
+                                        <td>
+                                                <form action="" method="post">
+                                                @csrf
                                                 <input type="text" name="jumlah_pesan" class="form-control" required="" >
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td>
-                                                <button type="submit" class="panda-button-bye-now"><i class="fa fa-shopping-cart"></i> Add Cart</button>
-                                            </td>
+                                                <button type="submit" class="panda-button-bye-now mt-2"><i class="bi bi-shopping-cart"></i> Add Cart</button>
+                                            </form>
                                         </td>
                                     </tr>
-                                </form>
                             </tbody>
                         </table>
                     </div>
