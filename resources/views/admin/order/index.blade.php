@@ -1,9 +1,5 @@
 @extends('admin.layouts.main')
 @section('content')
-<div class="page-wrapper">
-<!-- ============================================================== -->
-<!-- Bread crumb and right sidebar toggle -->
-<!-- ============================================================== -->
 <div class="page-breadcrumb">
   <div class="row align-items-center">
     <div class="col-md-6 col-8 align-self-center">
@@ -19,22 +15,11 @@
     </div>
     <div class="col-md-6 col-4 align-self-center">
       <div class="text-end upgrade-btn">
-        <a href="/admin/category/create"
-          class="btn btn-success d-none d-md-inline-block text-white">Tambah Data</a>
       </div>
     </div>
   </div>
 </div>
-<!-- ============================================================== -->
-<!-- End Bread crumb and right sidebar toggle -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
-<!-- Container fluid  -->
-<!-- ============================================================== -->
 <div class="container-fluid">
-  <!-- ============================================================== -->
-  <!-- Start Page Content -->
-  <!-- ============================================================== -->
   <div class="row">
     <!-- column -->
     <div class="col-sm-12">
@@ -46,8 +31,11 @@
             <table class="table user-table no-wrap">
               <thead>
                 <tr>
-                  <th class="border-top-0">#</th>
-                  <th class="border-top-0">Nama Kategori</th>
+                  <th class="border-top-0">Id</th>
+                  <th class="border-top-0">User id</th>
+                  <th class="border-top-0">Order Date</th>
+                  <th class="border-top-0">Total</th>
+                  <th class="border-top-0">Status</th>
                   <th class="border-top-0">Action</th>
                 </tr>
               </thead>
@@ -55,16 +43,16 @@
                 @foreach ($data as $item)
                   <tr>
                     <td>{{ $item->id }}</td>
-                    <td>{{ $item->user_id ->name}}</td>
+                    <td>{{ $item->user_id}}</td>
                     <td>{{ $item->order_date }}</td>
                     <td>{{ $item->total }}</td>
                     <td>{{ $item->status }}</td>
                     <td>
-                      <form action="/admin/category/{{ $item->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">
+                      <form action="/admin/order/{{ $item->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">
                       @csrf
                       @method('DELETE')
 
-                      <a href="/admin/category/{{ $item->id }}/edit" class="btn btn-info btn-sm text-light">Edit</a>
+                      <a href="/admin/order/{{ $item->id }}/edit" class="btn btn-info btn-sm text-light">Edit</a>
                       <button type="submit" class="btn btn-danger btn-sm text-light">Hapus</button>
                       </form>
                     </td>
