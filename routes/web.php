@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\LevelController as AdminLevelController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,10 +27,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/detail/{id}', [App\Http\Controllers\DetailController::class, 'index'])->name('detail');
+Route::get('/detail/{id}', [App\Http\Controllers\DetailController::class, 'index']);
 
 Route::middleware(['auth', 'isAdmin'])->group(function(){
     Route::prefix('admin')->group(function(){
