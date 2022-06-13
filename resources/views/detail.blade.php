@@ -38,7 +38,7 @@
                                         <td>Jumlah Pesan</td>
                                         <td>:</td>
                                         <td>
-                                                <form action="" method="post">
+                                                <form action="/pesan/{{$Products->id}}" method="post">
                                                 @csrf
                                                 <input type="text" name="jumlah_pesan" class="form-control" required="" >
                                                 <button type="submit" class="panda-button-bye-now mt-2"><i class="bi bi-shopping-cart"></i> Add Cart</button>
