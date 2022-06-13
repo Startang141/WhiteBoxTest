@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\LevelController as AdminLevelController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Customer\HomeController as CustomerHomeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DetailController;
 
@@ -22,12 +23,13 @@ use App\Http\Controllers\DetailController;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [CustomerHomeController::class, 'index']);
+Route::get('/home', [CustomerHomeController::class, 'index'])->name('home');
 
 Route::get('/detail/{id}', [App\Http\Controllers\DetailController::class, 'index']);
 Route::post('/pesan/{id}', [App\Http\Controllers\DetailController::class, 'order']);
