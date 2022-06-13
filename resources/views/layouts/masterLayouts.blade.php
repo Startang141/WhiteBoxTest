@@ -10,8 +10,9 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
     <!-- costomize style -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
 </head>
 
 <body>
@@ -21,7 +22,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="#"><img src="assets/images/logo.png" alt=""></a>
+                <a class="navbar-brand" href="/"><img src="assets/images/logo.png" alt=""></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +32,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="/">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#Petik">Petik</a>
@@ -62,6 +63,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/home/profile">
+                                        Profile
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -73,6 +77,21 @@
                                     </form>
                                 </div>
                             </li>
+                            <li class="nav-item">
+                           <?php
+                           $main_order = \App\Models\Order::where('user_id',Auth::user()->id)->where('status','unpaid')->first();
+                           if(!empty($main_order))
+                           {
+                            $notif = \App\Models\OrderDetail::where('order_id',$main_order->id)->count();
+                           }
+                           ?>
+                           <a href="/checkout" class="nav-link">
+                            <i class="fa fa-shopping-cart"></i>
+                            @if(!empty($notif))
+                            <span class="badge text-bg-danger">{{$notif}}</span>
+                            @endif
+                           </a>
+                        </li>
                         @endguest
                     </ul>
                 </div>

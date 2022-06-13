@@ -5,6 +5,23 @@
 <section class="container mt-5">
 <div class="container">
     <div class="row">
+        <div class="container">
+            <div class="page-breadcrumb">
+                <div class="row align-items-center">
+                    <div class="col-md-6 col-8 align-self-center">
+                        <h3 class="page-title mb-0 p-0">Profile</h3>
+                        <div class="d-flex align-items-center">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Detail {{$Products->name}}</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
@@ -41,7 +58,7 @@
                                                 <form action="/pesan/{{$Products->id}}" method="post">
                                                 @csrf
                                                 <input type="text" name="jumlah_pesan" class="form-control" required="" >
-                                                <button type="submit" class="panda-button-bye-now mt-2"><i class="bi bi-shopping-cart"></i> Add Cart</button>
+                                                <button type="submit" class="panda-button-bye-now mt-2"><i class="fa fa-shopping-cart"></i> Add Cart</button>
                                             </form>
                                         </td>
                                     </tr>
