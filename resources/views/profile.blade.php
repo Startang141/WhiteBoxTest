@@ -1,7 +1,7 @@
 @extends('layouts.masterLayouts')
 
 @section('content')
-<div class="container mt-5">
+<div class="container mt-3">
 <div class="page-breadcrumb">
   <div class="row align-items-center">
     <div class="col-md-6 col-8 align-self-center">
