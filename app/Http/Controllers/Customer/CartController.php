@@ -77,8 +77,9 @@ class CartController extends Controller
      */
     public function edit($id)
     {
-        $data = Cart::where('id', $id)->first();
-        return view('customer.categories.edit', compact('data'));
+        // dd('ok');
+        $carts = Cart::with('product')->where('user_id', auth()->user()->id)->where('product_id', $id)->first();
+        return view('edit_cart', compact('carts'));
     }
 
     /**
@@ -91,15 +92,20 @@ class CartController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'category' => 'required',
+            'product_id' => 'required',
+            'price' => 'required',
+            'qty' => 'required',
         ]);
 
-        //fungsi eloquent untuk menambah data
         Cart::where('id', $id)->update([
-            'category' => $request->category
+            'user_id' => auth()->user()->id,
+            'product_id' => $request->product_id,
+            'price' => $request->price,
+            'qty' => $request->qty,
+            'subtotal' => $request->price * $request->qty,
         ]);
 
-        return redirect('/admin/cart')->with('success', 'Data berhasil diubah!');
+        return redirect('/cart')->with('success', 'Data berhasil diubah!');
     }
 
     /**
@@ -111,7 +117,7 @@ class CartController extends Controller
     public function destroy($id)
     {
         Cart::where('id', $id)->delete();
-        return redirect('/admin/cart')
+        return redirect('/cart')
                     ->with('success', 'Data Berhasil dihapus!');
     }
 }

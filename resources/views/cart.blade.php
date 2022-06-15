@@ -29,6 +29,19 @@
           <div class="card-body">
             <div class="row">
               <div class="col-md-12">
+               
+                @if(session('success'))
+                  <div class="alert alert-success">
+                    {{session('success')}}
+                  </div>
+                @endif
+
+                @if(session('danger'))
+                  <div class="alert alert-danger">
+                    {{session('danger')}}
+                  </div>
+                @endif
+
                 <table class="table table-striped">
                   <thead>
                     <tr>
@@ -47,8 +60,13 @@
                         <td>{{ $item->qty }} x {{ number_format($item->price) }}</td>
                         <td>{{ number_format($item->subtotal) }}</td>
                         <td>
-                          <a href="" class="btn btn-info btn-sm text-white">Edit</a>
-                          <a href="" class="btn btn-danger btn-sm text-white">Delete</a>
+                          <form action="/cart/{{ $item->id }}" method="post" onsubmit="return confirm('Apakah anda yakin akan menghapus produk {{ $item->product->name }}')">
+                            @csrf
+                            @method('DELETE')
+
+                            <a href="/cart/{{ $item->product_id }}/edit" class="btn btn-info btn-sm text-white">Edit</a>
+                            <button type="submit" class="btn btn-danger btn-sm text-white">Delete</button>
+                          </form>
                         </td>
                       </tr>
                     @endforeach

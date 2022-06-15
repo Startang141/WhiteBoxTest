@@ -35,7 +35,7 @@ Route::controller(CustomerCartController::class)->group(function(){
     Route::post('cart', 'store');
     Route::get('cart/{id}/edit', 'edit');
     Route::put('cart/{id}', 'update');
-    Route::delete('cart/{id}', 'delete');
+    Route::delete('cart/{id}', 'destroy');
 });
 
 // Route::get('/detail/{id}', [App\Http\Controllers\DetailController::class, 'index']);
