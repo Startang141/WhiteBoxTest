@@ -4,6 +4,7 @@
 <section class="container mt-5">
   <div class="container">
     <div class="row">
+<<<<<<< HEAD
       <div class="container">
         <div class="page-breadcrumb">
           <div class="row align-items-center">
@@ -17,6 +18,23 @@
                   </ol>
                 </nav>
               </div>
+=======
+        <div class="container">
+            <div class="page-breadcrumb">
+                <div class="row align-items-center">
+                    <div class="col-md-6 col-8 align-self-center">
+                        <h3 class="page-title mb-0 p-0">Detail</h3>
+                        <div class="d-flex align-items-center">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Detail {{$Products->name}}</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+>>>>>>> 77499303dd48364dd7dcd49cd458aa5be28f1a59
             </div>
           </div>
         </div>
