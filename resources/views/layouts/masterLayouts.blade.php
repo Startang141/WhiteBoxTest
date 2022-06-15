@@ -85,11 +85,14 @@
                             $notif = \App\Models\OrderDetail::where('order_id',$main_order->id)->count();
                            }
                            ?>
-                           <a href="/checkout" class="nav-link">
+                           <a href="/cart" class="nav-link">
                             <i class="fa fa-shopping-cart"></i>
-                            @if(!empty($notif))
-                            <span class="badge text-bg-danger">{{$notif}}</span>
-                            @endif
+                            @auth
+                              <span class="badge text-bg-danger">{{ \App\Http\Controllers\Customer\CartController::count_cart(auth()->user()->id) }}</span>
+                            @endauth
+                            {{-- @if(!empty($notif))
+                                <span class="badge text-bg-danger">{{ $notif }}</span>
+                            @endif --}}
                            </a>
                         </li>
                         @endguest

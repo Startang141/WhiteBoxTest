@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\LevelController as AdminLevelController;
+use App\Http\Controllers\Customer\CartController as CustomerCartController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Customer\HomeController as CustomerHomeController;
@@ -27,11 +28,20 @@ use App\Http\Controllers\ProfileController;
 Auth::routes();
 Route::get('/', [CustomerHomeController::class, 'index']);
 Route::get('/home', [CustomerHomeController::class, 'index'])->name('home');
+Route::get('/detail/{id}', [CustomerHomeController::class, 'detail']);
 
-Route::get('/detail/{id}', [App\Http\Controllers\DetailController::class, 'index']);
-Route::post('/pesan/{id}', [App\Http\Controllers\DetailController::class, 'order']);
-Route::post('/checkout', [App\Http\Controllers\DetailController::class, 'checkout']);
-Route::delete('/checkout/{id}', [App\Http\Controllers\DetailController::class, 'delete']);
+Route::controller(CustomerCartController::class)->group(function(){
+    Route::get('cart', 'index');
+    Route::post('cart', 'store');
+    Route::get('cart/{id}/edit', 'edit');
+    Route::put('cart/{id}', 'update');
+    Route::delete('cart/{id}', 'delete');
+});
+
+// Route::get('/detail/{id}', [App\Http\Controllers\DetailController::class, 'index']);
+// Route::post('/pesan/{id}', [App\Http\Controllers\DetailController::class, 'order']);
+// Route::post('/checkout', [App\Http\Controllers\DetailController::class, 'checkout']);
+// Route::delete('/checkout/{id}', [App\Http\Controllers\DetailController::class, 'delete']);
 
 Route::prefix('home')->group(function(){
         Route::controller(ProfileController::class)->group(function(){
