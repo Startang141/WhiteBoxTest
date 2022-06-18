@@ -8,12 +8,13 @@
         <div class="page-breadcrumb">
           <div class="row align-items-center">
             <div class="col-md-6 col-8 align-self-center">
-              <h3 class="page-title mb-0 p-0">Keranjang</h3>
+              <h3 class="page-title mb-0 p-0">Order Detail</h3>
               <div class="d-flex align-items-center">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Detail Keranjang</li>
+                    <li class="breadcrumb-item"><a href="/order">Order</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Detail Order</li>
                   </ol>
                 </nav>
               </div>
@@ -45,42 +46,26 @@
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th>#</th>
-                      <th>Nama Produk</th>
-                      <th>Jumlah x Jumlah</th>
+                      <th>OrderID</th>
+                      <th>Product</th>
+                      <th>Price</th>
+                      <th>QTY</th>
                       <th>Subtotal</th>
-                      <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($carts as $item)
+                    @foreach ($order_detail as $item)
                       <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <td>#{{ $item->order_id }}</td>
                         <td>{{ $item->product->name }}</td>
-                        <td>{{ $item->qty }} x {{ number_format($item->price) }}</td>
-                        <td>{{ number_format($item->subtotal) }}</td>
-                        <td>
-                          <form action="/cart/{{ $item->id }}" method="post" onsubmit="return confirm('Apakah anda yakin akan menghapus produk {{ $item->product->name }}')">
-                            @csrf
-                            @method('DELETE')
-
-                            <a href="/cart/{{ $item->product_id }}/edit" class="btn btn-info btn-sm text-white">Edit</a>
-                            <button type="submit" class="btn btn-danger btn-sm text-white">Delete</button>
-                          </form>
-                        </td>
+                        <td>Rp. {{ number_format($item->price) }}</td>
+                        <td>{{ number_format($item->qty) }}</td>
+                        <td>Rp. {{ number_format($item->subtotal) }}</td>                        
                       </tr>
                     @endforeach
                   </tbody>
                 </table>
-                <h4 class="float-start mt-2 fw-bold">Rp. {{ number_format($total) }}</h4>
-
-                @if ($total != 0)
-                  <form action="/order" method="POST" onsubmit="return confirm('Apakah anda yakin akan checkout?')">
-                    @csrf
-                    <input type="hidden" name="total" value="{{ $total }}" id="">
-                    <button type="submit" class="btn btn-dark btn-lg float-end">Check Out</button>
-                  </form>
-                @endif
+                
               </div>
             </div>
           </div>

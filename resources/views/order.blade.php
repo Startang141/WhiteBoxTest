@@ -8,12 +8,12 @@
         <div class="page-breadcrumb">
           <div class="row align-items-center">
             <div class="col-md-6 col-8 align-self-center">
-              <h3 class="page-title mb-0 p-0">Keranjang</h3>
+              <h3 class="page-title mb-0 p-0">Order</h3>
               <div class="d-flex align-items-center">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Detail Keranjang</li>
+                    <li class="breadcrumb-item active" aria-current="page">Order</li>
                   </ol>
                 </nav>
               </div>
@@ -45,42 +45,36 @@
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th>#</th>
-                      <th>Nama Produk</th>
-                      <th>Jumlah x Jumlah</th>
-                      <th>Subtotal</th>
+                      <th>OrderID</th>
+                      <th>Nama User</th>
+                      <th>Order Date</th>
+                      <th>Total</th>
+                      <th>Status</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($carts as $item)
+                    @foreach ($orders as $item)
                       <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->product->name }}</td>
-                        <td>{{ $item->qty }} x {{ number_format($item->price) }}</td>
-                        <td>{{ number_format($item->subtotal) }}</td>
+                        <td>#{{ $item->id }}</td>
+                        <td>{{ $item->user->name }}</td>
+                        <td>{{ $item->order_date }}</td>
+                        <td>{{ number_format($item->total) }}</td>
                         <td>
-                          <form action="/cart/{{ $item->id }}" method="post" onsubmit="return confirm('Apakah anda yakin akan menghapus produk {{ $item->product->name }}')">
-                            @csrf
-                            @method('DELETE')
-
-                            <a href="/cart/{{ $item->product_id }}/edit" class="btn btn-info btn-sm text-white">Edit</a>
-                            <button type="submit" class="btn btn-danger btn-sm text-white">Delete</button>
-                          </form>
+                          @if ($item->status == 'unpaid')
+                            <span class="btn btn-sm btn-danger">{{ $item->status }}</span>
+                          @else                              
+                            <span class="btn btn-sm btn-success">{{ $item->status }}</span>
+                          @endif  
+                        </td>
+                        <td>
+                          <a href="/order/{{ $item->id }}/detail" class="btn btn-info btn-sm text-white">Detail</a>
                         </td>
                       </tr>
                     @endforeach
                   </tbody>
                 </table>
-                <h4 class="float-start mt-2 fw-bold">Rp. {{ number_format($total) }}</h4>
-
-                @if ($total != 0)
-                  <form action="/order" method="POST" onsubmit="return confirm('Apakah anda yakin akan checkout?')">
-                    @csrf
-                    <input type="hidden" name="total" value="{{ $total }}" id="">
-                    <button type="submit" class="btn btn-dark btn-lg float-end">Check Out</button>
-                  </form>
-                @endif
+                
               </div>
             </div>
           </div>

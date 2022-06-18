@@ -14,6 +14,8 @@
     </div>
     <div class="col-md-6 col-4 align-self-center">
       <div class="text-end upgrade-btn">
+        <a href="#"
+          class="btn btn-danger d-none d-md-inline-block text-white">Export PDF</a>
       </div>
     </div>
   </div>
@@ -55,15 +57,25 @@
                     <td>{{ $item->user_id}}</td>
                     <td>{{ $item->order_date }}</td>
                     <td>{{ $item->total }}</td>
-                    <td>{{ $item->status }}</td>
                     <td>
-                      <form action="/admin/order/{{ $item->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">
-                      @csrf
-                      @method('DELETE')
+                      @if ($item->status == 'unpaid')
+                        <a class="btn btn-sm btn-danger text-white">{{ $item->status }}</a>
+                      @else                              
+                        <a class="btn btn-sm btn-success text-white">{{ $item->status }}</a>
+                      @endif  
+                    </td>
+                    <td>
+                      @if ($item->status == 'unpaid')
+                        <form action="/admin/order/{{ $item->id }}" onsubmit="return confirm('Apakah anda yakin akan mengubah data?')" method="post">
+                          @csrf
+                          @method('PUT')
 
-                      <a href="/admin/order/{{ $item->id }}/edit" class="btn btn-info btn-sm text-light">Edit</a>
-                      <button type="submit" class="btn btn-danger btn-sm text-light">Hapus</button>
-                      </form>
+                          <button type="submit" class="btn btn-info btn-sm text-light">Sudah bayar?</button>
+                        </form>
+                      @else
+                        <a href="" class="btn btn-success btn-sm text-light">Terbayar</a>
+                      @endif
+                      
                     </td>
                   </tr>
                 @endforeach

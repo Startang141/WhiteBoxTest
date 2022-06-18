@@ -31,8 +31,8 @@
               <img src="{{ asset('storage/'.Auth::user()->image) }}" class="rounded-circle" width="150" />
             @endif
 
-            <h4 class="card-title mt-2">Hanna Gover</h4>
-            <h6 class="card-subtitle">Accoubts Manager Amix corp</h6>
+            <h4 class="card-title mt-2">Bintang</h4>
+            <h6 class="card-subtitle">ADMIN</h6>
             <div class="row justify-content-center">
               <div class="col-4">
                 <a href="javascript:void(0)" class="link">
