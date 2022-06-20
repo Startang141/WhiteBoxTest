@@ -48,15 +48,15 @@ class User extends Authenticatable
     ];
 
     public function level(){
-        return $this->belongsTo(level::class);
+        return $this->belongsTo(Level::class);
     }
     
     public function cart(){
-        return $this->hasOne(cart::class);
+        return $this->hasOne(Cart::class);
     }
 
     public function order(){
-        return $this->hasMany(order::class);
+        return $this->hasMany(Order::class);
     }
 
 

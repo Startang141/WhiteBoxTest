@@ -13,7 +13,7 @@
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Detail {{$products->name}}</li>
+                    <li class="breadcrumb-item active" aria-current="page">Detail {{$carts->product->name}}</li>
                   </ol>
                 </nav>
               </div>
@@ -24,42 +24,44 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h2>{{$products->name}}</h2>
+            <h2>{{$carts->product->name}}</h2>
           </div>
           <div class="card-body mt-5">
             <div class="row">
               <div class="col-md-6 ">
-                <img src="{{url ('assets/images/'.$products->image) }}" width="100%" class="rounded mx-auto d-block" alt="">
+                <img src="{{url ('assets/images/'.$carts->product->image) }}" width="100%" class="rounded mx-auto d-block" alt="">
               </div>
               <div class="col-md-6 mt-5">
-                <h2>{{$products->name}}</h2>
+                <h2>{{$carts->product->name}}</h2>
                 <table class="table">
                   <tbody>
                     <tr>
                       <td>Harga</td>
                       <td>:</td>
-                      <td class="fw-bold">Rp. {{ number_format($products->price) }}</td>
+                      <td class="fw-bold">Rp. {{ number_format($carts->product->price) }}</td>
                     </tr>
                     <tr>
                       <td>Stock</td>
                       <td>:</td>
-                      <td>{{$products->stock}}</td>
+                      <td>{{$carts->product->stock}}</td>
                     </tr>
                     <tr>
                       <td>Keterangan</td>
                       <td>:</td>
-                      <td>{{$products->description}}</td>
+                      <td>{{$carts->product->description}}</td>
                     </tr>
                     <tr>
                       <td>Jumlah Pesan</td>
                       <td>:</td>
                       <td>
-                        <form action="/cart" method="POST">
+                        <form action="/cart/{{ $carts->id }}" method="POST">
                           @csrf
-                          <input type="hidden" name="price" value="{{ $products->price }}" id="">
-                          <input type="hidden" name="product_id" value="{{ $products->id }}" id="">
-                          <input type="number" name="qty" class="form-control" required="" >
-                          <button type="submit" class="panda-button-bye-now mt-2"><i class="fa fa-shopping-cart"></i> Add Cart</button>
+                          @method('PUT')
+
+                          <input type="hidden" name="price" value="{{ $carts->product->price }}" id="">
+                          <input type="hidden" name="product_id" value="{{ $carts->product->id }}" id="">
+                          <input type="number" name="qty" class="form-control" required="" value="{{ $carts->qty }}">
+                          <button type="submit" class="panda-button-bye-now mt-2"><i class="fa fa-shopping-cart"></i> Update Cart</button>
                         </form>
                       </td>
                     </tr>

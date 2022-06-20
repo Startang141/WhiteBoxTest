@@ -73,7 +73,12 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Order::where('id', $id)->update([
+            'status' => 'paid'
+        ]);
+
+        return redirect('/admin/order')
+                    ->with('success', 'Berhasi mengubah data');
     }
 
     /**

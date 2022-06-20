@@ -96,7 +96,7 @@
         <section class="container my-5" id="Petik">
             <div class="row  gx-5 mb-4 ">
                 <h2 class="mt-5">Alat Musik Petik</h2>
-                @foreach ($Products as $p)
+                @foreach ($products as $p)
                 @if ($p->category_id == 1)
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="card border-0 shadow-lg h-100">
@@ -116,7 +116,7 @@
         <section class="container my-5" id="Pukul">
             <div class="row  gx-5 mb-4 ">
                 <h2 class="mt-5">Alat Musik Pukul</h2>
-                @foreach ($Products as $p)
+                @foreach ($products as $p)
                 @if ($p->category_id == 2)
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="card border-0 shadow-lg h-100">
@@ -136,7 +136,7 @@
         <section class="container my-5" id="Tiup">
             <div class="row  gx-5 mb-4 ">
                 <h2 class="mt-5">Alat Musik Tiup</h2>
-                @foreach ($Products as $p)
+                @foreach ($products as $p)
                 @if ($p->category_id == 3 )
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="card border-0 shadow-lg h-100">

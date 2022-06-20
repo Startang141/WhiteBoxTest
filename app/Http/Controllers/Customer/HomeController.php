@@ -9,7 +9,12 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index(){
-        $Products = Product::all();
-        return view('index',compact('Products'));
+        $products = Product::all();
+        return view('index',compact('products'));
+    }
+
+    public function detail($id){
+        $products = product::where('id', $id)->first(); 
+        return view('detail',compact('products'));
     }
 }
