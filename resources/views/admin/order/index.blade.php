@@ -74,13 +74,17 @@
                         </form>
                       @else
                         <a href="" class="btn btn-success btn-sm text-light">Terbayar</a>
-                      @endif
-                      
+                      @endif  
                     </td>
                   </tr>
                 @endforeach
               </tbody>
             </table>
+            <div class="row">
+        <div style="margin:0px 0px 0px 70px">
+        <a class="btn btn-success" href="{{ route('cetak_pdf') }}"> Cetak PDF</a>
+    </div>
+    </div>
           </div>
         </div>
       </div>

@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function(){
 
     Route::controller(CustomerOrderController::class)->group(function(){
         Route::get('order', 'index');
+        Route::get('order', 'cetak_pdf');
         Route::post('order', 'store');
         Route::get('order/{id}/detail', 'detail');
     });

@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use PDF;
 
 class OrderController extends Controller
 {
@@ -54,6 +55,13 @@ class OrderController extends Controller
         $order_detail = OrderDetail::with('order')->with('product')->where('order_id', $id)->get();
     
         return view('order_detail', compact('order_detail'));
+    }
+
+    public function cetak_pdf()
+    {
+        $orders = Order::all();
+        $pdf = PDF::loadview('admin.order.orders_pdf',compact('orders'));
+        return $pdf->stream();
     }
 
 }
