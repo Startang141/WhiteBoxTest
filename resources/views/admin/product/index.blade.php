@@ -72,7 +72,7 @@
                     <td>{{ $item->price }}</td>
                     <td>{{ $item->stock }}</td>
                     <td>{{ $item->rating }}</td>
-                    <td><img style="width: 50px; overflow:hidden" src="{{ asset('./assets/'. $item->image)}}" alt=""></td>
+                    <td><img style="width: 50px; overflow:hidden" src="{{ asset('./storage/'. $item->image)}}" alt=""></td>
                     <td>
                       <form action="/admin/product/{{ $item->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">
                       @csrf

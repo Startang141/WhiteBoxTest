@@ -26,7 +26,7 @@
       <div class="col-lg-12 col-xlg-9 col-md-7">
       <div class="card">
         <div class="card-body">
-        <form method="post" action="{{ route('product.update', $item->id) }}" id="myForm" class="form-horizontal form-material mx-2">
+        <form method="post" action="/admin/product/{{ $item->id }}" id="myForm" enctype="multipart/form-data" class="form-horizontal form-material mx-2">
             @csrf
             @method('PUT')
             <div class="form-group">
@@ -102,7 +102,7 @@
             <div class="form-group">
                 <label class="col-md-12 mb-0" for="Image">Image</label> 
                 <div class="col-md-12">
-                <input type="file" name="Image" class="form-control ps-0 form-control-line @error('image') is-invalid @enderror" id="Image" value="{{ $item->image }}" aria-describedby="Image" > 
+                <input type="file" name="image" class="form-control ps-0 form-control-line @error('image') is-invalid @enderror" id="Image" value="{{ $item->image }}" aria-describedby="Image" > 
                 <img style="width:100%" src="{{ asset('assets/'. $item->image)}}" alt="">
               @error('image')
                   <span class="invalid-feedback" role="alert">

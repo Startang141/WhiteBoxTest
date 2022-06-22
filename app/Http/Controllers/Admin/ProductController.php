@@ -112,30 +112,35 @@ class ProductController extends Controller
         $request->validate([
             'Name'=>'required',
             'Description'=>'required',
+            'Category'=>'required',
             'Price'=>'required',
             'Stock'=>'required',
             'Rating'=>'required',
         ]);
 
-        $product = new Product;
-        $product->name = $request->get('Name');
-        $product->description = $request->get('Description');
-        $product->price = $request->get('Price');
-        $product->stock = $request->get('Stock');
-        $product->rating = $request->get('Rating');
-        if($product->image && file_exists(storage_path('app/public/'. $product->image))) {
-                Storage::delete('public/' . $product->image);
-            }
-        //fungsi eloquent untuk menambahkan data
-        $category = new category;
-        $category->id = $request->get('category');
+        if($request->image && file_exists(storage_path('app/public/'. $request->image))) {
+            Storage::delete('public/' . $request->image);
+        }
 
-        $product->category()->associate($category);
-        $product->save();
+        $name_image = null;
+
+        if($request->file('image')){
+            $name_image = $request->file('image')->store('images','public');
+        }
+
+        Product::where('id', $id)->update([
+            'name' => $request->Name,
+            'category_id' => $request->Category,
+            'description' => $request->Description,
+            'price' => $request->Price,
+            'stock' => $request->Stock,
+            'rating' => $request->Rating,
+            'image' => $name_image
+        ]);
         
         //jika data berhasil ditambahkan, akan kembali ke halaman utama
-        return redirect()->route('admin.product.index')
-        ->with('success','Pelanggan Berhasil Ditambahakan');
+        return redirect()->to('/admin/product')
+        ->with('success','Product Berhasil Ditambahakan');
     }
 
     /**

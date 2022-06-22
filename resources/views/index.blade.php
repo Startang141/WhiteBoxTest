@@ -100,7 +100,7 @@
                 @if ($p->category_id == 1)
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="card border-0 shadow-lg h-100">
-                        <img src="assets/images/{{$p -> image}}" alt="...">
+                        <img src="{{ asset('storage/'.$p->image) }}" alt="...">
                         <div class="card-body">
                             <h4 class="card-title">{{$p -> name}}</h4>
                             <p class="card-text">{{$p -> description}}</p>
@@ -120,7 +120,7 @@
                 @if ($p->category_id == 2)
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="card border-0 shadow-lg h-100">
-                        <img src="assets/images/{{$p -> image}}" alt="...">
+                        <img src="{{ asset('storage/'.$p->image) }}" alt="...">
                         <div class="card-body">
                             <h4 class="card-title">{{$p -> name}}</h4>
                             <p class="card-text">{{$p -> description}}</p>
@@ -140,7 +140,7 @@
                 @if ($p->category_id == 3 )
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="card border-0 shadow-lg h-100">
-                        <img src="assets/images/{{$p -> image}}" alt="...">
+                        <img src="{{ asset('storage/'.$p->image) }}" alt="...">
                         <div class="card-body">
                             <h4 class="card-title">{{$p -> name}}</h4>
                             <p class="card-text">{{$p -> description}}</p>
