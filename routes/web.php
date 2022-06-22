@@ -72,6 +72,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
         Route::resource('category', AdminCategoryController::class);
         Route::resource('product', AdminProductController::class);
         Route::resource('order', AdminOrderController::class);
+        Route::get('/export', [AdminOrderController::class, 'export'])->name('export');
         Route::resource('user', AdminUserController::class);
         Route::resource('level', AdminLevelController::class);
     });

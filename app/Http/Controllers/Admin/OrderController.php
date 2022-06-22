@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use PDF;
 
 class OrderController extends Controller
 {
@@ -17,6 +18,15 @@ class OrderController extends Controller
     {
         $data = Order::all();
         return view('admin.order.index', compact('data'));
+    }
+
+    public function export()
+    {
+        // dd('assas');
+        $orders = Order::all();
+        // return view('admin.order.orders_pdf', compact('orders'));
+        $pdf = PDF::loadview('admin.order.orders_pdf', compact('orders'));
+        return $pdf->stream();
     }
 
     /**

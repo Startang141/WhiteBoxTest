@@ -14,7 +14,7 @@
     </div>
     <div class="col-md-6 col-4 align-self-center">
       <div class="text-end upgrade-btn">
-        <a href="#"
+        <a href="/admin/export"
           class="btn btn-danger d-none d-md-inline-block text-white">Export PDF</a>
       </div>
     </div>
@@ -82,7 +82,6 @@
             </table>
             <div class="row">
         <div style="margin:0px 0px 0px 70px">
-        <a class="btn btn-success" href="{{ route('cetak_pdf') }}"> Cetak PDF</a>
     </div>
     </div>
           </div>

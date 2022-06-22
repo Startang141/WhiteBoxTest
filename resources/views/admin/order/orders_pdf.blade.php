@@ -13,7 +13,12 @@
         <p>Berikut ini merupakan list transaksi dari penjualan pada website alat musik</p>
     </center>
 
-    <table class='table table-bordered' style="width:95%;margin:0 auto;">
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+    </style>
+    <table class='table table-bordered' border="1" style="width:95%;margin:0 auto;">
     <thead>
         <tr>
         <th class="border-top-0">Id</th>
