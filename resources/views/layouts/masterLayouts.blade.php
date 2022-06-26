@@ -108,7 +108,11 @@
         </main>
     <footer>
         <section class="container mt-5 text-center">
-            <p><small>©2020. Panda Commerce. All rights reserved. Sofia, Bulgaria.</small></p>
+            <p><small>©2020. Panda Commerce. All rights reserved. Sofia, Bulgaria.
+                Telephone   : 081252294287
+                Email       : bintang@gmail.com   
+                
+            </small></p>
         </section>
     </footer>
 

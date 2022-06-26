@@ -49,13 +49,15 @@ class ProductController extends Controller
             'Description'=>'required',
             'Price'=>'required',
             'Stock'=>'required',
-            'rating'=>'required',
+            'Rating'=>'required',
         ]);
 
+        $image_name = null;
         if($request->file('Image')){
             $image_name=$request->file('Image')->store('images','public');
         }
 
+        //fungsi eloquent untuk menambahkan data
         $product = new Product;
         $product->name = $request->get('Name');
         $product->description = $request->get('Description');
@@ -63,15 +65,15 @@ class ProductController extends Controller
         $product->stock = $request->get('Stock');
         $product->rating = $request->get('Rating');
         $product->image = $image_name;
-        //fungsi eloquent untuk menambahkan data
+       
         $category = new Category;
-        $category->id = $request->get('category');
+        $category->id = $request->get('Category');
 
-        $product->category()->associate($category);
+        $product->category()->associate($category); //relasi
         $product->save();
         
         //jika data berhasil ditambahkan, akan kembali ke halaman utama
-        return redirect()->route('admin.product.index')
+        return redirect()->to('admin/product')
         ->with('success','Produk Berhasil Ditambahakan');
     }
 
@@ -118,6 +120,8 @@ class ProductController extends Controller
             'Rating'=>'required',
         ]);
 
+        $row = Product::where('id', $id)->first();
+
         if($request->image && file_exists(storage_path('app/public/'. $request->image))) {
             Storage::delete('public/' . $request->image);
         }
@@ -135,7 +139,7 @@ class ProductController extends Controller
             'price' => $request->Price,
             'stock' => $request->Stock,
             'rating' => $request->Rating,
-            'image' => $name_image
+            'image' => ($name_image == null) ? $row->image : $name_image,
         ]);
         
         //jika data berhasil ditambahkan, akan kembali ke halaman utama
@@ -152,7 +156,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         Product::where('id', $id)->delete();
-        return redirect()->route('admin.product.index')
+        return redirect()->to('/admin/product')
                     ->with('success', 'Berhasi menghapus');
     }
 }

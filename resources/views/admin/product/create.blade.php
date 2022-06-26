@@ -26,7 +26,7 @@
 <div class="col-lg-12 col-xlg-9 col-md-7">
       <div class="card">
         <div class="card-body">
-        <form method="post" action="{{ route('product.store') }}" enctype="multipart/form" id="myForm" class="form-horizontal form-material mx-2">
+        <form method="post" action="{{ route('product.store') }}" enctype="multipart/form-data" id="myForm" class="form-horizontal form-material mx-2">
             @csrf
             <div class="form-group">
                 <label class="col-md-12 mb-0" for="Name">Nama</label> 
@@ -47,7 +47,7 @@
                   <option value="{{$ctg->id}}" {{$ctg->category_id == $ctg->id ? 'selected' : ''}} > {{$ctg->category}} </option>
                   @endforeach
                 </select>
-              @error('category')
+              @error('Category')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
@@ -90,8 +90,8 @@
             <div class="form-group">
                 <label class="col-md-12 mb-0" for="Rating">Rating</label> 
                 <div class="col-md-12">
-                <input type="text" name="Rating" class="form-control ps-0 form-control-line @error('rating') is-invalid @enderror" id="Rating" value="{{ old('rating') }}" aria-describedby="Rating" > 
-              @error('rating')
+                <input type="text" name="Rating" class="form-control ps-0 form-control-line @error('rating') is-invalid @enderror" id="Rating" value="{{ old('Rating') }}" aria-describedby="Rating" > 
+              @error('Rating')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
