@@ -73,7 +73,7 @@ class UserController extends Controller
         $user->save();
         
         //jika data berhasil ditambahkan, akan kembali ke halaman utama
-        return redirect()->route('admin.users.index')
+        return redirect()->to('/admin/users')
         ->with('success','Pelanggan Berhasil Ditambahakan');
     }
 
@@ -112,31 +112,22 @@ class UserController extends Controller
     {
         // dd('OK');
         $request->validate([
-            'Name'=>'required',
-            'Email'=>'required',
-            'Address'=>'required',
-            'Phone_number'=>'required',
-            'Gender'=>'required',
-            'Image'=>'required'
+            'name'=>'required',
+            'address'=>'required',
+            'phone_number'=>'required',
+            'gender'=>'required',
+            'level'=>'required',
         ]);
 
-        $user = new User;
-        $user->name = $request->get('Name');
-        $user->email = $request->get('Email');
-        $user->address = $request->get('Address');
-        $user->phone_number = $request->get('Phone_number');
-        $user->gender = $request->get('Gender');
-        if($user->image && file_exists(storage_path('app/public/'. $user->image))) {
-                Storage::delete('public/' . $user->image);
-            }
-        //fungsi eloquent untuk menambahkan data
-        $level = new level;
-        $level->id = $request->get('Level');
+        User::where('id', $id)->update([
+            'name' => $request->name,
+            'address' => $request->address,
+            'phone_number' => $request->phone_number,
+            'gender' => $request->gender,
+            'level_id' => $request->level,
+        ]);
 
-        $user->level()->associate($level);
-        $user->save();
-
-        return redirect()->route('admin.users.index')
+        return redirect()->to('/admin/user')
                         ->with('success','Pelanggan Berhasil Diupdate');
     }
 
@@ -149,7 +140,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::where('id', $id)->delete();
-        return redirect()->route('admin.users.index')
+        return redirect()->to('/admin/user')
                     ->with('success', 'Berhasi menghapus');
     }
 }

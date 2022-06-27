@@ -14,8 +14,6 @@
     </div>
     <div class="col-md-6 col-4 align-self-center">
       <div class="text-end upgrade-btn">
-        <a href="{{route ('user.create')}}"
-          class="btn btn-success d-none d-md-inline-block text-white">Tambah Data</a>
       </div>
     </div>
   </div>
@@ -47,7 +45,7 @@
                   <th class="border-top-0">Alamat</th>
                   <th class="border-top-0">Nomer HP</th>
                   <th class="border-top-0">Jenis Kelamin</th>
-                  <th class="border-top-0">Gambar</th>
+                  {{-- <th class="border-top-0">Gambar</th> --}}
                   <th class="border-top-0">Level</th>
                   <th class="border-top-0">Action</th>
                 </tr>
@@ -60,7 +58,7 @@
                     <td>{{ $item->address }}</td>
                     <td>{{ $item->phone_number }}</td>
                     <td>{{ $item->gender }}</td>
-                    <td><img style="width: 50px; overflow:hidden" src="{{ asset('./assets/'. $item->image)}}" alt=""></td>
+                    {{-- <td><img style="width: 50px; overflow:hidden" src="{{ asset('./assets/'. $item->image)}}" alt=""></td> --}}
                     <td>{{ $item->level->level }}</td>
                     <td>
                       <form action="/admin/user/{{ $item->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">

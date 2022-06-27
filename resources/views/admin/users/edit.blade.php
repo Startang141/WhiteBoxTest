@@ -26,13 +26,13 @@
       <div class="col-lg-12 col-xlg-9 col-md-7">
       <div class="card">
         <div class="card-body">
-        <form method="post" action="{{ route('user.update', $item->id) }}" id="myForm" class="form-horizontal form-material mx-2">
+        <form method="post" action="/admin/user/{{ $item->id }}" id="myForm" class="form-horizontal form-material mx-2">
             @csrf
             @method('PUT')
             <div class="form-group">
                 <label class="col-md-12 mb-0" >Nama</label> 
                 <div class="col-md-12">
-                <input type="text" name="Name" class="form-control ps-0 form-control-line @error('name') is-invalid @enderror" id="Name" value="{{ $item->name }}" aria-describedby="Name" > 
+                <input type="text" name="name" class="form-control ps-0 form-control-line @error('name') is-invalid @enderror" id="name" value="{{ $item->name }}" aria-describedby="name" > 
               @error('name')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -43,7 +43,7 @@
             <div class="form-group">
                 <label class="col-md-12 mb-0" >Email</label> 
                 <div class="col-md-12">
-                <input type="text" name="Email" class="form-control ps-0 form-control-line @error('email') is-invalid @enderror" id="Email" value="{{ $item->email }}" aria-describedby="Email" > 
+                <input type="text" readonly name="email" class="form-control ps-0 form-control-line @error('email') is-invalid @enderror" id="email" value="{{ $item->email }}" aria-describedby="email" > 
               @error('email')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -54,7 +54,7 @@
             <div class="form-group">
                 <label class="col-md-12 mb-0" >Alamat</label> 
                 <div class="col-md-12">
-                <input type="text" name="Address" class="form-control ps-0 form-control-line @error('address') is-invalid @enderror" id="Address" value="{{ $item->address }}" aria-describedby="Address" > 
+                <input type="text" name="address" class="form-control ps-0 form-control-line @error('address') is-invalid @enderror" id="address" value="{{ $item->address }}" aria-describedby="address" > 
               @error('address')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -65,7 +65,7 @@
             <div class="form-group">
                 <label class="col-md-12 mb-0" >Nomor HP</label> 
                 <div class="col-md-12">
-                <input type="text" name="Phone_number" class="form-control ps-0 form-control-line @error('phone_number') is-invalid @enderror" id="Phone_number" value="{{ $item->phone_number }}" aria-describedby="Phone_number" > 
+                <input type="text" name="phone_number" class="form-control ps-0 form-control-line @error('phone_number') is-invalid @enderror" id="phone_number" value="{{ $item->phone_number }}" aria-describedby="phone_number" > 
               @error('phone_number')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -76,7 +76,7 @@
             <div class="form-group">
                 <label class="col-md-12 mb-0" >Jenis Kelamin</label> 
                 <div class="col-md-12">
-                <select type="enum" name="Gender" class="form-control ps-0 form-control-line @error('gender') is-invalid @enderror" id="Gender" value="{{ $item->gender }}" aria-describedby="Gender">
+                <select name="gender" class="form-control ps-0 form-control-line @error('gender') is-invalid @enderror" id="gender" value="{{ $item->gender }}" aria-describedby="gender">
                   <option>L</option>
                   <option>P</option>
                 </select> 
@@ -96,18 +96,6 @@
                   @endforeach
                 </select> 
               @error('level')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-12 mb-0" >Image</label> 
-                <div class="col-md-12">
-                <input type="file" name="Image" class="form-control ps-0 form-control-line @error('image') is-invalid @enderror" id="Image" value="{{ $item->image }}" aria-describedby="Image" > 
-                <img style="width:100%" src="{{ asset('assets/'. $item->image)}}" alt="">
-                @error('image')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
