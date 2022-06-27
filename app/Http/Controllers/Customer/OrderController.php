@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\OrderDetail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -59,8 +60,8 @@ class OrderController extends Controller
 
     public function cetak_pdf()
     {
-        $orders = Order::all();
-        $pdf = PDF::loadview('admin.order.orders_pdf',compact('orders'));
+        $orders_detail = OrderDetail::all();
+        $pdf = PDF::loadview('print_pdf',compact('orders_detail'));
         return $pdf->stream();
     }
 
