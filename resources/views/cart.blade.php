@@ -75,7 +75,7 @@
                 <h4 class="float-start mt-2 fw-bold">Rp. {{ number_format($total) }}</h4>
 
                 @if ($total != 0)
-                  <form action="/order" method="POST" onsubmit="return confirm('Apakah anda yakin akan checkout?')">
+                  <form action="/order/" method="POST" onsubmit="return confirm('Apakah anda yakin akan checkout?')">
                     @csrf
                     <input type="hidden" name="total" value="{{ $total }}" id="">
                     <button type="submit" class="btn btn-dark btn-lg float-end">Check Out</button>

@@ -60,7 +60,7 @@ class ProductController extends Controller
         //fungsi eloquent untuk menambahkan data
         $product = new Product;
         $product->name = $request->get('Name');
-        $product->description = $request->get('Description');
+          $product->description = $request->get('Description');
         $product->price = $request->get('Price');
         $product->stock = $request->get('Stock');
         $product->rating = $request->get('Rating');

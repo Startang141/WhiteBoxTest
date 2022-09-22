@@ -49,10 +49,10 @@ Route::middleware('auth')->group(function(){
     });
 });
 
-// Route::get('/detail/{id}', [App\Http\Controllers\DetailController::class, 'index']);
-// Route::post('/pesan/{id}', [App\Http\Controllers\DetailController::class, 'order']);
-// Route::post('/checkout', [App\Http\Controllers\DetailController::class, 'checkout']);
-// Route::delete('/checkout/{id}', [App\Http\Controllers\DetailController::class, 'delete']);
+Route::get('/detail/{id}', [App\Http\Controllers\DetailController::class, 'index']);
+Route::post('/pesan/{id}', [App\Http\Controllers\DetailController::class, 'order']);
+Route::post('/checkout', [App\Http\Controllers\DetailController::class, 'checkout']);
+Route::delete('/checkout/{id}', [App\Http\Controllers\DetailController::class, 'delete']);
 
 Route::prefix('home')->group(function(){
     Route::controller(ProfileController::class)->group(function(){
